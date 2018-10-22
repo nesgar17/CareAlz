@@ -9,23 +9,41 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="~/Content/Iconos/send coin.png" alt="..." style="width:100px; height:100px">
+            <div class="caption">
+                <h3>Envia una solicitud</h3>
+                <p>Eres un centro de ayuda, hospital especializado o alguna organización que ayuda a personas con Alzheimer
+                    envianos una solicitud para formar parte de CareAlz<p>
+                <p>@Html.ActionLink("Enviar Solicitud", "Create", "Solicitudes", new { }, new { @class = "btn btn-info" })</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="~/Content/Iconos/1192588-icono-marca.png" alt="..." style="width:100px; height:100px">
+            <div class="caption">
+                <h3>Haz el Test</h3>
+                <p>Quieres saber si estas propenso a tener la enfermedad, con este test lo podras saber y recibir ayuda<p>
+                <p>@Html.ActionLink("Hacer Test", "Create", "Solicitudes", new { }, new { @class = "btn btn-success" })</p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <img src="~/Content/Iconos/register.jpg" alt="..." style="width:100px; height:100px">
+            <div class="caption">
+                <h3>Registrate</h3>
+                <p>Para obtener todos los beneficios de la aplicación es necesari que tengas una cuenta de usuario en
+                    CareAlz<p>
+                    <span></span>
+                <p>@Html.ActionLink("Registarme", "Create", "Solicitudes", new { }, new { @class = "btn btn-warning" })</p>
+            </div>
+        </div>
     </div>
+
 </div>
