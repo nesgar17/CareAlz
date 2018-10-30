@@ -3,6 +3,7 @@ namespace CareAlz.Controllers
 {
     using CareAlz.Clases;
     using CareAlz.Models;
+    using System;
     using System.Data.Entity;
     using System.Linq;
     using System.Net;
@@ -19,7 +20,19 @@ namespace CareAlz.Controllers
                 .Include(r => r.Category)
                 .Include(r => r.Colony)
                 .Include(r => r.Municipality)
-                .Include(r => r.State);
+                .Include(r => r.State).Where(r => r.Status=="Espera");
+
+            return View(requestInstitutes.ToList());
+        }
+
+        public ActionResult SolicitudesAceptadas()
+        {
+            var requestInstitutes = db.RequestInstitutes
+                 .Include(r => r.Category)
+                 .Include(r => r.Colony)
+                 .Include(r => r.Municipality)
+                 .Include(r => r.State).Where(r => r.Status == "Aceptada");
+
             return View(requestInstitutes.ToList());
         }
 
@@ -56,16 +69,40 @@ namespace CareAlz.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public async System.Threading.Tasks.Task  ValidarSolicitud(int? id)
+        {
+            if (id == null)
+            {
+                ViewBag.Message = new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var request = db.RequestInstitutes.Find(id);
+            var mail = new MailHelper();
+
+            request.Status = "Aceptada";
+            db.Entry(request).State = EntityState.Modified;
+            db.SaveChanges();
+
+            string subject = "--Respuesta a Solicitud--";
+            string body = "Felicitaciones tu solicitud ha sido aprobada, ahora ya formas parte de CareAlz \n" +
+                         "Apartir de hoy puedes ingresar a la plataforma en la sección de terminar registro para que tu perfil sea crado";
+
+            await mail.SendMail(request.Email, subject, body);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(RequestInstitute requestInstitute)
         {
             if (ModelState.IsValid)
             {
+                requestInstitute.SendDate = DateTime.Now;
+                requestInstitute.Status = "Espera";
                 db.RequestInstitutes.Add(requestInstitute);
                 var response =  DbHelper.SaveChanges(db);
                 if (response.Successfully)
                 {
-                    return RedirectToAction("Index");
-
+                    return RedirectToAction("Mensaje");
 
                 }
 

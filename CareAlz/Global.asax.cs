@@ -2,6 +2,7 @@
 using System.Data.Entity;
 namespace CareAlz
 {
+    using CareAlz.Clases;
     using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -17,6 +18,19 @@ namespace CareAlz
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+
+        }
+
+
+        private void checkRolesAndSuperUser()
+        {
+            UsersHelper.CheckRole("Admin");
+            UsersHelper.CheckRole("Instututo");
+            UsersHelper.CheckRole("Paciente");
+            UsersHelper.CheckRole("Familiar");
+            UsersHelper.CheckSuperUser();
         }
     }
 }

@@ -1,54 +1,16 @@
 ﻿@model CareAlz.Models.RequestInstitute
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Detalles de Solicitud</h2>
 
 <div>
     <h4>RequestInstitute</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Colony.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Colony.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Municipality.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Municipality.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.State.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.State.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SendDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SendDate)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -98,9 +60,50 @@
             @Html.DisplayFor(model => model.Status)
         </dd>
 
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendDate)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Colony)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Colony)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Aceptar Solicitud", "ValidarSolicitud", new { id = Model.RequestId }, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("Cancelar", "Index", new { }, new {@class = "btn btn-danger" })
 </p>

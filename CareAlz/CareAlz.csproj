@@ -210,7 +210,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Clases\CombosHelper.cs" />
     <Compile Include="Clases\DbHelper.cs" />
+    <Compile Include="Clases\FileHelper.cs" />
+    <Compile Include="Clases\MailHelper.cs" />
     <Compile Include="Clases\Response.cs" />
+    <Compile Include="Clases\UsersHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministratorsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -333,9 +336,11 @@
     <Content Include="Views\RequestInstitutes\Edit.cshtml" />
     <Content Include="Views\RequestInstitutes\Index.cshtml" />
     <Content Include="Views\RequestInstitutes\Mensage.cshtml" />
+    <Content Include="Views\RequestInstitutes\SolicitudesAceptadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Photos\" />
     <Folder Include="Views\Generic\" />
   </ItemGroup>
   <ItemGroup>

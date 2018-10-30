@@ -52,6 +52,12 @@ namespace CareAlz.Models
         public string Status { get; set; }
 
 
+        public string FullAddress { get { return string.Format("{0},{1},{2},{3}"
+            , State.Description
+            , Municipality.Description
+            , Colony.Description
+            , Address); } }
+
         public virtual State State { get; set; }
 
         public virtual Municipality Municipality { get; set; }

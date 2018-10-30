@@ -56,8 +56,34 @@ namespace CareAlz.Controllers
             if (ModelState.IsValid)
             {
                 db.Administrators.Add(administrator);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var response = DbHelper.SaveChanges(db);
+
+                UsersHelper.CreateUserASP(administrator.Email, "Admin", administrator.Password);
+                if (administrator.PhotoFile != null)
+                {
+
+                    var folder = "~/Content/Photos";
+                    var file = string.Format("{0}{1}.jpg", administrator.AdministratorId,administrator.FirstName);
+                    var responsefile = FileHelper.UploadPhoto(administrator.PhotoFile, folder, file);
+                    if (responsefile)
+                    {
+                        var pic = string.Format("{0}/{1}", folder, file);
+                        administrator.Photo = pic;
+                        db.Entry(administrator).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                    }
+
+                }
+                if (response.Successfully)
+                {
+
+                    return RedirectToAction("Index");
+
+                }
+                ModelState.AddModelError(string.Empty, response.Message);
+
+              
             }
 
             ViewBag.IdColony = new SelectList(CombosHelper.GetColonies(administrator.ColonyId), "IdColony", "Description", administrator.ColonyId);
@@ -72,7 +98,7 @@ namespace CareAlz.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrator administrator = db.Administrators.Find(id);
+            var administrator = db.Administrators.Find(id);
             if (administrator == null)
             {
                 return HttpNotFound();
@@ -91,8 +117,33 @@ namespace CareAlz.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(administrator).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var response = DbHelper.SaveChanges(db);
+
+                if (administrator.PhotoFile != null)
+                {
+
+                    var folder = "~/Content/Photos";
+                    var file = string.Format("{0}{1}.jpg", administrator.AdministratorId, administrator.FirstName);
+                    var responsefile = FileHelper.UploadPhoto(administrator.PhotoFile, folder, file);
+                    if (responsefile)
+                    {
+                        var pic = string.Format("{0}/{1}", folder, file);
+                        administrator.Photo = pic;
+                        db.Entry(administrator).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                    }
+
+                }
+                if (response.Successfully)
+                {
+
+                    return RedirectToAction("Index");
+
+                }
+                ModelState.AddModelError(string.Empty, response.Message);
+
+
             }
             ViewBag.IdColony = new SelectList(CombosHelper.GetColonies(administrator.ColonyId), "IdColony", "Description", administrator.ColonyId);
             ViewBag.IdMunicipality = new SelectList(CombosHelper.GetMunicipalities(administrator.MunicipalityId), "IdMunicipality", "Description", administrator.MunicipalityId);

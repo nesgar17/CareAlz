@@ -1,7 +1,25 @@
 ﻿
+
 @{
-    ViewBag.Title = "Mensage";
+    ViewBag.Title = "Registro Exitoso";
 }
 
-<h2>Mensage</h2>
+<h2>Haz enviado tu solicitud con exito!!!</h2>
+
+
+<div class="row">
+    <div class="col-md-7">
+        <h4>@ViewBag.Message</h4>
+        <br />
+
+        <p>
+            En un maximo de 48 horas resiviras un correo confirmandote tu registro
+            para que formes parte de CareAlz
+        </p>
+        <br />
+        @Html.ActionLink("Inicio", "Index", "Home", new { }, new { @class = "btn btn-success" })
+
+    </div>
+</div>
+
 

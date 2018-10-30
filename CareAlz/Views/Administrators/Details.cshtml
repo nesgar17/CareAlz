@@ -1,10 +1,10 @@
 ﻿@model CareAlz.Models.Administrator
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<h2>Más información </h2>
 
 <div>
     <h4>Administrator</h4>
@@ -101,6 +101,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AdministratorId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.AdministratorId }, new { @class = "btn btn-info" }) |
+    @Html.ActionLink("Cancelar", "Index", new { }, new { @class = "btn btn-danger" })
 </p>
